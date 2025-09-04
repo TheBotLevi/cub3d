@@ -1,46 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_rendering.c                                    :+:      :+:    :+:   */
+/*   cub_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ljeribha <ljeribha@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/03 18:00:37 by ljeribha          #+#    #+#             */
-/*   Updated: 2025/09/04 18:55:02 by ljeribha         ###   ########.fr       */
+/*   Created: 2025/09/04 18:00:50 by ljeribha          #+#    #+#             */
+/*   Updated: 2025/09/04 18:11:05 by ljeribha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int	render_2d_map(t_cube *cube, t_map *map, t_player *player)
+void	find_player(t_map *map, t_player *player)
 {
 	int	i;
 	int	j;
-	int	y;
-	int	x;
 
 	i = 0;
-	j = 0;
-	y = 0;
-	x = 0;
-	while (y < HEIGHT)
+	while (map->map[i])
 	{
-		while (x < WIDTH)
-		{
-			mlx_pixel_put(cube->mlx_ptr, cube->win_ptr, x, y, 0x404040);
-			x++;
-		}
-		y++;
+		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] == '1')
-				draw_tile(cube, map);
-			else if (map->map[i][j] == '0')
-				draw_tile(cube, map);
+			if (map->map[i][j] == 'N' || map->map[i][j] == 'S' ||
+				map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			{
+				player->x = j;
+				player->y = i;
+				if (map->map[i][j] == 'N')
+					player->angle = 270;
+				else if (map->map[i][j] == 'S')
+					player->angle = 90;
+				else if (map->map[i][j] == 'E')
+					player->angle = 0;
+				else if (map->map[i][j] == 'W')
+					player->angle = 180;
+				return ;
+			}
 			j++;
 		}
 		i++;
 	}
-	// draw player
-	draw_tile(cube, player);
 }

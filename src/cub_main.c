@@ -6,19 +6,11 @@
 /*   By: ljeribha <ljeribha@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 15:25:27 by ljeribha          #+#    #+#             */
-/*   Updated: 2025/09/03 16:56:33 by ljeribha         ###   ########.fr       */
+/*   Updated: 2025/09/04 09:45:32 by ljeribha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	init_cube(t_cube *cube)
-{
-	cube->mlx_ptr = mlx_init();
-	cube->win_ptr = mlx_new_window(cube->mlx_ptr, WIDTH, HEIGHT, "CUB3D");
-	cube->img = mlx_new_image(cube->mlx_ptr, WIDTH, HEIGHT);
-	cube->addr = mlx_get_data_addr(cube->img, &cube->bpp, &cube->len, &cube->en);
-}
 
 int	main(int ac, char **av)
 {

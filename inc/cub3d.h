@@ -6,7 +6,7 @@
 /*   By: ljeribha <ljeribha@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:43:43 by ljeribha          #+#    #+#             */
-/*   Updated: 2025/09/03 18:50:06 by ljeribha         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:38:18 by ljeribha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <fcntl.h>
 #include "../miniLibX/minilibx-linux/mlx.h"
 #include "../libft/libft.h"
 
@@ -40,6 +41,8 @@ typedef struct s_map
 	char	**map;
 	double		y;
 	double		x;
+	int		size;
+	int		color;
 }	t_map;
 
 typedef struct s_player
@@ -55,5 +58,15 @@ void	clean_up(t_cube *cube);
 
 // cub_hooks
 int	esc_key(int keycode, t_cube *cube);
+
+//cub_drawing
+void	draw_tile(t_cube *cube, t_map *map);
+
+//cub_init
+void	init_cube(t_cube *cube);
+void	init_map(t_map *map);
+
+//cub_player
+void	find_player(t_map *map, t_player *player);
 
 #endif
